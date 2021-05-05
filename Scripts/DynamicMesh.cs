@@ -37,10 +37,13 @@ namespace ProceduralMeshes
         private List<BoneWeight> boneWeights;
         public List<BoneWeight> BoneWeights { get { if (boneWeights == null) boneWeights = new List<BoneWeight>(); return boneWeights; } set { boneWeights = value; } }
 
+        private List<Matrix4x4> bindPoses;
+        public List<Matrix4x4> BindPoses { get { if (bindPoses == null) bindPoses = new List<Matrix4x4>(); return bindPoses; } set { bindPoses = value; } }
+
         public MeshTopology topology;
 
 
-        public DynamicMesh(string name = "", IEnumerable<Vector3> vertices = null, IEnumerable<int> indices = null, IEnumerable<Vector3> normals = null, IEnumerable<Color> colors = null, List<Vector2> uv0 = null, List<Vector2> uv1 = null, List<Vector2> uv2 = null, List<Vector2> uv3 = null, List<Vector2> uv4 = null, List<BoneWeight> boneWeights = null, MeshTopology topology = MeshTopology.Triangles)
+        public DynamicMesh(string name = "", IEnumerable<Vector3> vertices = null, IEnumerable<int> indices = null, IEnumerable<Vector3> normals = null, IEnumerable<Color> colors = null, IEnumerable<Vector2> uv0 = null, IEnumerable<Vector2> uv1 = null, IEnumerable<Vector2> uv2 = null, IEnumerable<Vector2> uv3 = null, IEnumerable<Vector2> uv4 = null, IEnumerable<BoneWeight> boneWeights = null, IEnumerable<Matrix4x4> bindPoses = null, MeshTopology topology = MeshTopology.Triangles)
         {
             this.name = name;
             this.vertices = vertices?.ToList();
@@ -53,6 +56,7 @@ namespace ProceduralMeshes
             this.uv3 = uv3?.ToList();
             this.uv4 = uv4?.ToList();
             this.boneWeights = boneWeights?.ToList();
+            this.bindPoses = bindPoses?.ToList();
             this.topology = topology;
         }
         public Mesh ToMesh()
