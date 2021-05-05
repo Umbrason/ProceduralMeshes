@@ -1,0 +1,13 @@
+{
+  "name": "com.umbrason.proceduralmeshes",
+  "version": "1.0.0",
+  "displayName": "Procedural Meshes",
+  "description": "This Package contains a struct for storing mesh geometry of dynamic size, aswell as utility for procedural generation and rendering .",
+  "keywords": [
+    "Shader"
+  ],
+  "author": {
+    "name": "Umbrason"
+  },
+  "hideInEditor": false
+}
