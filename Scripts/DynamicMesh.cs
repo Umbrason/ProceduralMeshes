@@ -18,21 +18,42 @@ namespace ProceduralMeshes
         private List<Color> colors;
         public List<Color> Colors { get { if (colors == null) colors = new List<Color>(); return colors; } set { colors = value; } }
 
+        private List<Vector2> uv0;
+        public List<Vector2> UV0 { get { if (uv0 == null) uv0 = new List<Vector2>(); return uv0; } set { uv0 = value; } }
+
+        private List<Vector2> uv1;
+        public List<Vector2> UV1 { get { if (uv1 == null) uv1 = new List<Vector2>(); return uv1; } set { uv1 = value; } }
+
+        private List<Vector2> uv2;
+        public List<Vector2> UV2 { get { if (uv2 == null) uv2 = new List<Vector2>(); return uv2; } set { uv2 = value; } }
+
+
+        private List<Vector2> uv3;
+        public List<Vector2> UV3 { get { if (uv3 == null) uv3 = new List<Vector2>(); return uv3; } set { uv3 = value; } }
+
+        private List<Vector2> uv4;
+        public List<Vector2> UV4 { get { if (uv4 == null) uv4 = new List<Vector2>(); return uv4; } set { uv4 = value; } }
+
         public MeshTopology topology;
 
 
-        public DynamicMesh(string name = "", IEnumerable<Vector3> vertices = null, IEnumerable<int> indices = null, IEnumerable<Vector3> normals = null, IEnumerable<Color> colors = null, MeshTopology topology = MeshTopology.Triangles)
+        public DynamicMesh(string name = "", IEnumerable<Vector3> vertices = null, IEnumerable<int> indices = null, IEnumerable<Vector3> normals = null, IEnumerable<Color> colors = null, List<Vector2> uv0 = null, List<Vector2> uv1 = null, List<Vector2> uv2 = null, List<Vector2> uv3 = null, List<Vector2> uv4 = null, MeshTopology topology = MeshTopology.Triangles)
         {
             this.name = name;
             this.vertices = vertices?.ToList();
             this.indices = indices?.ToList();
             this.normals = normals?.ToList();
             this.colors = colors?.ToList();
+            this.uv0 = uv0?.ToList();
+            this.uv1 = uv1?.ToList();
+            this.uv2 = uv2?.ToList();
+            this.uv3 = uv3?.ToList();
+            this.uv4 = uv4?.ToList();
             this.topology = topology;
         }
         public Mesh ToMesh()
         {
-            Mesh m = new Mesh() { name = name, vertices = Vertices.ToArray(), normals = Normals.ToArray(), colors = Colors.ToArray() };
+            Mesh m = new Mesh() { name = name, vertices = Vertices.ToArray(), normals = Normals.ToArray(), colors = Colors.ToArray(), uv = UV0.ToArray(), uv2 = UV1.ToArray(), uv3 = UV2.ToArray(), uv4 = UV3.ToArray(), uv5 = UV4.ToArray() };
             m.SetIndices(Indices.ToArray(), topology, 0);
             return m;
         }
@@ -52,6 +73,11 @@ namespace ProceduralMeshes
                     Vertices.Add(TRS * mesh.vertices[i + subMeshDesc.baseVertex]);
                     Normals.Add(TRS.rotation * mesh.normals[i + subMeshDesc.baseVertex]);
                     Colors.Add(mesh.colors[i + subMeshDesc.baseVertex]);
+                    uv0.Add(mesh.uv[i]);
+                    uv1.Add(mesh.uv2[i]);
+                    uv2.Add(mesh.uv3[i]);
+                    uv3.Add(mesh.uv4[i]);
+                    uv4.Add(mesh.uv5[i]);
                 }
                 for (int i = 0; i < subMeshDesc.indexCount; i++)
                     Indices.Add(mesh.triangles[i + subMeshDesc.indexStart] + indexOffset);
