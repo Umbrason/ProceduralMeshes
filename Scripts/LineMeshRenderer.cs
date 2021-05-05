@@ -23,6 +23,8 @@ namespace ProceduralMeshes
             }
         }
         public Vector3 offset;
+        public Vector3 scale = Vector3.one;
+        public Vector3 rotation;
 
         public void Update()
         {
@@ -30,7 +32,7 @@ namespace ProceduralMeshes
                 GenerateLineMesh();
             if (!lineMesh)
                 return;
-            Graphics.DrawMesh(lineMesh, transform.localToWorldMatrix * Matrix4x4.TRS(offset, Quaternion.identity, Vector3.one), material, gameObject.layer, null, 0, null, shadowCastingMode, true);
+            Graphics.DrawMesh(lineMesh, transform.localToWorldMatrix * Matrix4x4.TRS(offset, Quaternion.Euler(rotation), scale), material, gameObject.layer, null, 0, null, shadowCastingMode, true);
         }
 
         internal virtual void GenerateLineMesh()
