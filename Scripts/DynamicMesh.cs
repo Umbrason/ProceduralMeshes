@@ -34,10 +34,13 @@ namespace ProceduralMeshes
         private List<Vector2> uv4;
         public List<Vector2> UV4 { get { if (uv4 == null) uv4 = new List<Vector2>(); return uv4; } set { uv4 = value; } }
 
+        private List<BoneWeight> boneWeights;
+        public List<BoneWeight> BoneWeights { get { if (boneWeights == null) boneWeights = new List<BoneWeight>(); return boneWeights; } set { boneWeights = value; } }
+
         public MeshTopology topology;
 
 
-        public DynamicMesh(string name = "", IEnumerable<Vector3> vertices = null, IEnumerable<int> indices = null, IEnumerable<Vector3> normals = null, IEnumerable<Color> colors = null, List<Vector2> uv0 = null, List<Vector2> uv1 = null, List<Vector2> uv2 = null, List<Vector2> uv3 = null, List<Vector2> uv4 = null, MeshTopology topology = MeshTopology.Triangles)
+        public DynamicMesh(string name = "", IEnumerable<Vector3> vertices = null, IEnumerable<int> indices = null, IEnumerable<Vector3> normals = null, IEnumerable<Color> colors = null, List<Vector2> uv0 = null, List<Vector2> uv1 = null, List<Vector2> uv2 = null, List<Vector2> uv3 = null, List<Vector2> uv4 = null, List<BoneWeight> boneWeights = null, MeshTopology topology = MeshTopology.Triangles)
         {
             this.name = name;
             this.vertices = vertices?.ToList();
@@ -49,6 +52,7 @@ namespace ProceduralMeshes
             this.uv2 = uv2?.ToList();
             this.uv3 = uv3?.ToList();
             this.uv4 = uv4?.ToList();
+            this.boneWeights = boneWeights?.ToList();
             this.topology = topology;
         }
         public Mesh ToMesh()
@@ -78,6 +82,7 @@ namespace ProceduralMeshes
                     uv2.Add(mesh.uv3[i]);
                     uv3.Add(mesh.uv4[i]);
                     uv4.Add(mesh.uv5[i]);
+                    boneWeights.Add(mesh.boneWeights[i]);
                 }
                 for (int i = 0; i < subMeshDesc.indexCount; i++)
                     Indices.Add(mesh.triangles[i + subMeshDesc.indexStart] + indexOffset);
