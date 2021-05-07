@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace ProceduralMeshes
 {
-    public struct DynamicMesh
+    public class DynamicMesh
     {
         public string name;
         private List<Vector3> vertices;
@@ -61,7 +61,7 @@ namespace ProceduralMeshes
         }
         public Mesh ToMesh()
         {
-            Mesh m = new Mesh() { name = name, vertices = Vertices.ToArray(), normals = Normals.ToArray(), colors = Colors.ToArray(), uv = UV0.ToArray(), uv2 = UV1.ToArray(), uv3 = UV2.ToArray(), uv4 = UV3.ToArray(), uv5 = UV4.ToArray() };
+            Mesh m = new Mesh() { name = name, vertices = Vertices.ToArray(), normals = Normals.ToArray(), colors = Colors.ToArray(), uv = UV0.ToArray(), uv2 = UV1.ToArray(), uv3 = UV2.ToArray(), uv4 = UV3.ToArray(), uv5 = UV4.ToArray(), boneWeights = BoneWeights.ToArray(), bindposes = BindPoses.ToArray() };
             m.SetIndices(Indices.ToArray(), topology, 0);
             return m;
         }
