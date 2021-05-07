@@ -66,8 +66,8 @@ namespace ProceduralMeshes
             return m;
         }
 
-        public void AddMesh(Mesh mesh, Vector3 position, Quaternion rotation, Vector3 scale) => AddMesh(mesh, Matrix4x4.TRS(position, rotation, scale));
-        public void AddMesh(Mesh mesh, Matrix4x4 TRS)
+        public void AppendMesh(Mesh mesh, Vector3 position, Quaternion rotation, Vector3 scale) => AppendMesh(mesh, Matrix4x4.TRS(position, rotation, scale));
+        public void AppendMesh(Mesh mesh, Matrix4x4 TRS)
         {
             for (int s = 0; s < mesh.subMeshCount; s++)
             {
