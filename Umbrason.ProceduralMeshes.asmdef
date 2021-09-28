@@ -1,5 +1,6 @@
 {
-    "name": "ProceduralMeshes",
+    "name": "Umbrason.ProceduralMeshes",
+    "rootNamespace": "",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
