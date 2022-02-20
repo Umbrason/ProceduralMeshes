@@ -98,7 +98,7 @@ namespace ProceduralMeshes
                 Debug.LogError($"trying to append mesh with different topology type. expected {this.topology} but found {mesh.topology}");
                 return;
             }
-            AppendMesh(0, vertices.Count, 0, indices.Count, TRS ??= Matrix4x4.TRS(Vector3.zero, Quaternion.identity, Vector3.one),
+            AppendMesh(0, mesh.Vertices.Count, 0, mesh.Indices.Count, TRS ??= Matrix4x4.TRS(Vector3.zero, Quaternion.identity, Vector3.one),
                 mesh.Vertices,
                 mesh.Indices,
                 mesh.Normals,
