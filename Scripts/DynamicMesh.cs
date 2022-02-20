@@ -118,7 +118,7 @@ namespace ProceduralMeshes
             for (int i = 0; i < vertexCount; i++)
             {
                 var index = i + baseVertex;
-                Vertices.Add(meshVertices?.Count > index ? TRS * meshVertices[index] : default);
+                Vertices.Add(meshVertices?.Count > index ? TRS * ((Vector4)meshVertices[index] + new Vector4(0, 0, 0, 1)) : default);
                 Normals.Add(meshNormals?.Count > index ? TRS.rotation * meshNormals[index] : default);
                 Colors.Add(meshColors?.Count > index ? meshColors[index] : default);
                 UV0.Add(meshUV0?.Count > index ? meshUV0[index] : default);
