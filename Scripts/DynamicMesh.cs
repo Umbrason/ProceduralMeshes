@@ -66,7 +66,7 @@ namespace ProceduralMeshes
         }
 
         public void AppendMesh(Mesh mesh, Vector3 position, Quaternion rotation, Vector3 scale) => AppendMesh(mesh, Matrix4x4.TRS(position, rotation, scale));
-        public void AppendMesh(Mesh mesh, Matrix4x4? TRS)
+        public void AppendMesh(Mesh mesh, Matrix4x4? TRS = null)
         {
             for (int s = 0; s < mesh.subMeshCount; s++)
             {
@@ -84,14 +84,20 @@ namespace ProceduralMeshes
                 mesh.boneWeights
                 );
                 if (subMeshDesc.topology != topology)
+                {
+                    Debug.LogError($"trying to append mesh with different topology type. expected {topology} but found {subMeshDesc.topology}");
                     continue;
+                }
             }
         }
         public void AppendMesh(DynamicMesh mesh, Vector3 position, Quaternion rotation, Vector3 scale) => AppendMesh(mesh, Matrix4x4.TRS(position, rotation, scale));
-        public void AppendMesh(DynamicMesh mesh, Matrix4x4? TRS)
+        public void AppendMesh(DynamicMesh mesh, Matrix4x4? TRS = null)
         {
             if (this.topology != mesh.topology)
+            {
+                Debug.LogError($"trying to append mesh with different topology type. expected {this.topology} but found {mesh.topology}");
                 return;
+            }
             AppendMesh(0, vertices.Count, 0, indices.Count, TRS ??= Matrix4x4.TRS(Vector3.zero, Quaternion.identity, Vector3.one),
                 mesh.Vertices,
                 mesh.Indices,
