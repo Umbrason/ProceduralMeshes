@@ -87,7 +87,7 @@ namespace ProceduralMeshes
                     continue;
             }
         }
-
+        public void AppendMesh(DynamicMesh mesh, Vector3 position, Quaternion rotation, Vector3 scale) => AppendMesh(mesh, Matrix4x4.TRS(position, rotation, scale));
         public void AppendMesh(DynamicMesh mesh, Matrix4x4? TRS)
         {
             if (this.topology != mesh.topology)
@@ -106,7 +106,7 @@ namespace ProceduralMeshes
             );
         }
 
-        public void AppendMesh(int baseVertex, int vertexCount, int baseIndex, int indexCount, Matrix4x4 TRS, IList<Vector3> meshVertices, IList<int> meshIndices, IList<Vector3> meshNormals, IList<Color> meshColors, IList<Vector2> meshUV0, IList<Vector2> meshUV1, IList<Vector2> meshUV2, IList<Vector2> meshUV3, IList<Vector2> meshUV4, IList<BoneWeight> meshBoneWeights)
+        private void AppendMesh(int baseVertex, int vertexCount, int baseIndex, int indexCount, Matrix4x4 TRS, IList<Vector3> meshVertices, IList<int> meshIndices, IList<Vector3> meshNormals, IList<Color> meshColors, IList<Vector2> meshUV0, IList<Vector2> meshUV1, IList<Vector2> meshUV2, IList<Vector2> meshUV3, IList<Vector2> meshUV4, IList<BoneWeight> meshBoneWeights)
         {
             int indexOffset = vertices.Count;
             for (int i = 0; i < vertexCount; i++)
